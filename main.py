@@ -224,7 +224,7 @@ def sepia_indv_pix(p):
   return (r,g,b)
 
 
-
+#Added by Diego 
 def negative(img):
   width, height = img.size
   negative_list = [(255-p[0], 255-p[1], 255-p[2])
@@ -233,6 +233,7 @@ def negative(img):
   return_image.putdata(negative_list)
   return return_image
 
+#Added by Diego 
 def scaleDown(img):
     w, h = img.width//2, img.height//2
     return_image = Image.new('RGB', (w, h))
@@ -247,6 +248,7 @@ def scaleDown(img):
         
     return return_image
 
+ # Added by Diego 
 def scaleUp(img):
 
     mf = 2
