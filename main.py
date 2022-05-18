@@ -9,6 +9,8 @@
 
 #while this program runs post to the subreddit and wait for an automatic post response with your output
 
+#if this code breaks and stops auto running then you can run it manually from the guthub yourself since only one of these should probably be running at one time
+
 import praw
 import os, re, requests
 import json
@@ -64,10 +66,13 @@ def main():
     #reddit.subreddit("FreeKarma4You")(new)
   
     for submission in reddit.subreddit('ImageProccessingCS205').new(limit = 10):
-      if "Output" or "Instructions" in submission.url:
+      if submission.id == "ur7gqk":
         continue
         
-      print(submission.title)
+      if "Output" in submission.url:
+        continue
+        
+      
       choice = submission.title
       try:
         url = submission.url
@@ -79,25 +84,25 @@ def main():
       if (choice == "grayscale"):
         image = grayscale(image)
         title = "Output Grayscale"
-        print("grayscale")
+        #print("grayscale")
         post(image, submission, reddit, title)
         
       elif(choice == "sepia"):
         image = sepia(image)
         title = "Output Sepia"
-        print("sepia")
+        #print("sepia")
         post(image, submission, reddit, title)
         
       elif(choice == "negative"):
         image = negative(image)
         title = "Output Negative"
-        print("negative")
+        #print("negative")
         post(image, submission, reddit, title)
   
       elif(choice == "scale down"):
         image = scaleDown(image)
         title = "Output scale down"
-        print("scale down")
+        #print("scale down")
         post(image, submission, reddit, title)
   
     print("sleeping 5 seconds")
@@ -136,7 +141,7 @@ def post(image, submission, reddit,title):
       posts_list = returnListFromTextFile("postsRepliedTo.txt")
 
       if submission.id in posts_list:
-        print("already processed image")
+        #print("already processed image")
         return
 
   
